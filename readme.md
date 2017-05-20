@@ -7,4 +7,6 @@
   
 * the three-party libs will be installed into /Lib/site-packages , origin libs are in /Lib  
 
+* git remember user/password : vim .git/config add ==> [credentail] helper = store
+
 
