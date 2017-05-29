@@ -41,9 +41,9 @@
 
 * Install app ：First:define the models.py , define fields property ; Second : In setting.py INSTALL_APPS(below list all be created in db) add TestModel which you just python manage startapp TestModel, then run below command:
 	```
-	1,python manage.py migrate
-	2,python manage.py makemigrations TestModel
-	3,python manage.py migrate TestModel
+	1,python manage.py migrate	#
+	2,python manage.py makemigrations TestModel	#to test any changes happen here
+	3,python manage.py migrate TestModel	#
 	```
 	then all tebles is created ok  
 
