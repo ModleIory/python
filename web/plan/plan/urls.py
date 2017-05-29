@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import pymysql
 
 '''
 	为了导入上级目录
@@ -26,10 +27,23 @@ sys.path.append('../')
 from . import view # import view --regard . as a package , so like that
 #从上级导入的
 import view_
+from . import db_use
+from TestModel.views import find_one
 
 urlpatterns = [
+    #操练模型
     url(r'^admin/', admin.site.urls),
     url(r'^hello$',view.hello),
     url(r'^mapi$',view_.hello),
-    url(r'^show$',view.show)
+    url(r'^show$',view.show),
+    url(r'extends$',view.extends),
+
+    #操练数据库
+    url(r'insert$',db_use.save_data),
+    url(r'select$',db_use.get_data),
+    url(r'update$',db_use.update_data),
+    url(r'delete$',db_use.delete_data),
+
+    #把app作为模块来搞，一个app一个model加controller
+    url(r'find$',find_one),
 ]

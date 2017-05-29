@@ -6,5 +6,22 @@
 </head>
 <body>
 	<h1>{{hello}}</h1>
+
+	{% if flag %}
+		<h2>flag is true</h2>
+	{% endif %}
+	{% for x in list reversed %}
+		<strong>{{x.name}} is {{x.age}} and saying is {{x.saying}}</strong> 
+	{% endfor %}
+	{% ifequal 10 count %}
+		<cite>count 等于10</cite>
+	{% endifequal %}
+
+	{# this is remark #}
+	<p>{{variable|last|upper}}</p>
+	{# show the one to two words , more replace by... #}
+	<p>{{variable|truncatewords:"2"}}</p>
+
+	{% include 'in/in.html' %}
 </body>
 </html>

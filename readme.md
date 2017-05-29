@@ -3,7 +3,7 @@
 
 **I regard '/' as installed directory**  
 
-### python  
+### python==3.6.1  
 
 * after installed python , set the path of /python.exe and /Script/pip.exe into enviroment  all cmd execute statement is save in /Script
   
@@ -17,16 +17,37 @@
 
 *
 
-### Django  
+### Django==1.11.1  
 
 * install Django : pip install Django==1.11.1  
 
 * create project : django-admin.py startproject MyProjectName  
 
-* start project : come into the root directory and python manage.py 8080 [we can define its port]  
+* start project : come into the root directory and python manage.py runserver 8080 [we can define its port]  
 
-* set the templates path : find the settings.py , and set TEMPLATE = []
+* set the templates path : find the settings.py , and set TEMPLATE = []  
 
+* In django ，there is no > = or < , just has ifequal and if true  
+
+* More than version python3.4 , the mysql driver use pymysql , install ==> pip install pymysql 
+
+* Django use mysql libs default to be MySQLdb，but I use pymysql，so，I deal in __init__.py add code like 
+	```
+	import pymysql  
+	pymysql.install_as_MySQLdb()
+	```
+
+* start a new app : python manage.py startapp TestModel
+
+* Install app ：First:define the models.py , define fields property ; Second : In setting.py INSTALL_APPS(below list all be created in db) add TestModel which you just python manage startapp TestModel, then run below command:
+	```
+	1,python manage.py migrate
+	2,python manage.py makemigrations TestModel
+	3,python manage.py migrate TestModel
+	```
+	then all tebles is created ok  
+
+* there is some strange thing , If I create an app, the model and view(controller) all in the same app directory...
 
 
 
