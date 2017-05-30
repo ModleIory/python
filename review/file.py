@@ -9,14 +9,16 @@ print('*'*20+'file learn'+'*'*20)
 f = open('text.txt','a+')
 
 #在这里写了之后,指针移动到了屁股上,所以接着read就会读不到内容,所以必须把指针重新放到头部
-s = f.write('_planner')
+s = f.write('我是王')
 
 print(s)
 
 #seek(移动的位置[可为负数],相对于何处[0,头部,1,当前,2,末尾])
 #这里不能是负数的0,因为不是b模式,是b(二进制)模式的话,就可以从末尾搞,中间搞,不是的话,就只能从头搞
-f.seek(0,2)
+print('*'*10+'所处位置是'+str(f.tell()))
+f.seek(0,0)
+print('*'*10+'所处位置是'+str(f.tell()))
 
-print(f.read())
+print(f.read(3))
 
 f.close()
