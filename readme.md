@@ -23,7 +23,11 @@
 
 * I wanna import something to a.py , the peer directory of a.py is in the sys.path, so ,just import as package,no need to deal them
 
-* python import must import to a document instead of directory  ....
+* python import must import to a document instead of directory  ....  
+
+* os.path.dirname(fu) #get which directory fu is in  os.path.join(a,b) # link path a and b => os.path.isfile  os.path.isdir os.path.exist  
+
+*
 
 ### Django==1.11.1  
 
@@ -60,7 +64,21 @@
 
 * there is some strange thing , If I create an app, the model and view(controller) all in the same app directory...  
 
-* rebuild thought:first set setting.py , and run a test , still ok , then build app ...
+* rebuild thought:first set setting.py , and run a test , still ok , then build app ...  
+
+* scan static source with {{STATIC_URL}} how to set:
+	```
+		add 'django.contrib.staticfiles' in INSTALLED_APP
+		add 'django.template.context_processors.static' in TEMPLATES
+		set these to variables :
+			STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+			STATIC_URL = '/static/'  
+	```  
+
+* during tpl extends, we can use relative path instead of package like {% extends '../base.html' %}  
+
+*
+
 
 
 

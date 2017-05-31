@@ -26,4 +26,6 @@ urlpatterns = [
 
     #user
     url(r'^login$',user.views.login),
+    url(r'^register$',user.views.register),
+    url(r'^save_user$',user.views.save_user),
 ]

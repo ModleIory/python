@@ -1,0 +1,51 @@
+{% extends '../base.html' %}
+
+{% block frame %}
+	<form>
+		{% csrf_token %}
+		<label for="username">username</label>
+		<input type="text" name="username" id="username">
+		<br>
+		<label for="password">password</label>
+		<input type="password" name="password" id="password">
+		<br>
+		<label for="rpassword">rpassword</label>
+		<input type="password" name="rpassword" id="rpassword">
+		<br>
+		<a type="a" href="/login">登陆</a>
+		<br>
+		<button type="button" id="register">注册</button>
+	</form>
+	<script type="text/javascript">
+		~function(){
+			init()
+			function init(){
+				register()
+			}
+			function register(){
+				$('#register').on('click',function(){
+					var form_data = $('form').serializeArray()
+					console.log(form_data)
+					var data = new Object()
+					form_data.forEach(function(v,k){
+						// console.log(v.name,v.value)
+						data[v.name] = v.value
+					})
+					// console.log(data)
+					$.ajax({
+						type:'post',
+						dataType:'json',
+						data:{msg:JSON.stringify(data)},
+						url:'/save_user',
+						success:function(res){
+							console.log(res)
+						},
+						fail:function(err){
+							console.log(err)
+						}
+					})
+				})
+			}
+		}()
+	</script>
+{% endblock %}

@@ -15,6 +15,9 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# print('*'*40)
+# print(os.path.abspath(__file__))
+# print( os.path.dirname(os.path.abspath(__file__)) )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -63,7 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages'
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static'
             ],
         },
     },
@@ -123,4 +127,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_URL = '/static/'

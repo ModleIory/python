@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>用户登录页面</title>
-</head>
-<body>
-	<h1>用户登录页面</h1>
-	
-</body>
-</html>
+{% extends '../base.html' %}
+
+{% block frame %}
+	<form>
+		<label for="username">username</label>
+		<input type="text" name="username" id="username">
+		<br>
+		<label for="password">password</label>
+		<input type="password" name="password" id="password">
+		<br>
+		<a type="a" href="{{BASE_DIR}}register">注册</a>
+		<br>
+		<button type="button" >提交</button>
+	</form>
+{% endblock %}
