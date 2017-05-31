@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*- 
 
-import export
+import export,sys
 
+
+print(sys.path)
 
 export.one()
 export.two()
