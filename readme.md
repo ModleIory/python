@@ -85,7 +85,15 @@
 
 * reander(req,'xx.html',data) , data is dictionary , but if draw to template , do not use it like user['sex'] ,but user.sex in html page  
 
-* 
+* In setting.py,there is a ALLOW_HOST=[],when project run online , must define which host is allow, or can not scan  
+
+* uwsgi-- in face , a http server of python,like apache , like phpfpm , can run lonely , but better with nginx,but wsgi is a interface  
+
+* run uswgi-server command :  uwsgi --http :8003 --chdir  /usr/she/nginx/python/image_deal/ --wsgi-file /usr/share/nginx/python/image_deal/image_deal/wsgi.py  [alse I can run with a config document uwsgi --ini config.ini (but I fail)]  
+
+* user nginx is just for uwsgi_pass to uwsgi server  
+
+
 
 
 
