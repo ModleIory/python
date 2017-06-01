@@ -39,6 +39,10 @@
 						url:'/save_user',
 						success:function(res){
 							console.log(res)
+							alert(res.msg)
+							if(res.code==0){
+								window.location.href = "BASE_DIR/login"
+							}
 						},
 						fail:function(err){
 							console.log(err)

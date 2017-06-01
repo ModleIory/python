@@ -1,0 +1,12 @@
+{% extends '../base.html' %}
+
+{% block frame %}
+	<img src="{{STATIC_URL}}img/show.jpg">
+	用户名是{{user.account}}---性别是
+	{% if user.sex %}
+	男
+	{% else %}
+	女
+	{% endif %}
+	---身份是{{user.admin}}
+{% endblock %}

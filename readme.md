@@ -77,7 +77,15 @@
 
 * during tpl extends, we can use relative path instead of package like {% extends '../base.html' %}  
 
-*
+* about post problems: If ajax post straightly,would show 403, because django's crfs defend;How to deal? ONE: When form [{% csrf_token %}] request to server , it will set a cookie csrf to client , TWO: Add request header "X-CSRFToken:..." ,THree: add middleware 'django.middleware.csrf.CsrfViewMiddleware', then ... it works  
+
+* in django，what I get is not a dic or list... but a object get by model class , so use user.account instead of user['account']  
+
+* during django model select, **filter** means where , **get** many , but get just find one!  
+
+* reander(req,'xx.html',data) , data is dictionary , but if draw to template , do not use it like user['sex'] ,but user.sex in html page  
+
+* 
 
 
 

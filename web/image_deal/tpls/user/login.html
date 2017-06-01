@@ -2,6 +2,7 @@
 
 {% block frame %}
 	<form>
+		{% csrf_token %}
 		<label for="username">username</label>
 		<input type="text" name="username" id="username">
 		<br>
@@ -10,6 +11,30 @@
 		<br>
 		<a type="a" href="{{BASE_DIR}}register">注册</a>
 		<br>
-		<button type="button" >提交</button>
+		<button type="button" id="submit" >提交</button>
 	</form>
+	<script type="text/javascript">
+		(function(){
+			$('#submit').on('click',function(){
+				var account = $('[name=username]').val()
+				var password = $('[name=password]').val()
+				$.ajax({
+					type:'get',
+					dataType:'json',
+					data:{
+						account:account,
+						password:password
+					},
+					url:"{{BASE_DIR}}do_login",
+					success:function(res){
+						console.info(res)
+						alert(res.msg)
+						if(res.code==0){
+							window.location.href = "{{BASE_DIR}}show_image"
+						}
+					}
+				})
+			})
+		})()
+	</script>
 {% endblock %}

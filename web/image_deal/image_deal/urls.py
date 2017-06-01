@@ -19,6 +19,7 @@ from . import test_view
 #为了防止命名空间冲突
 # from user.views import *
 import user.views
+import image.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,4 +29,9 @@ urlpatterns = [
     url(r'^login$',user.views.login),
     url(r'^register$',user.views.register),
     url(r'^save_user$',user.views.save_user),
+    url(r'^do_login$',user.views.do_login),
+
+    #image
+    url(r'^show_image$',image.views.show_image),
+    
 ]
