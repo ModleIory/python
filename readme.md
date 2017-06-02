@@ -27,7 +27,9 @@
 
 * os.path.dirname(fu) #get which directory fu is in  os.path.join(a,b) # link path a and b => os.path.isfile  os.path.isdir os.path.exist  
 
-*
+* Kinds of version python install in ubuntu is not difficult , because they has their own installation directory and has their own binary executable document , such like /usr/bin/python  or /usr/local/bin/python3.6 , we can execute them with directory path ; if I wanna python3 default to python3.6 instead of 3.4 , I just operate global alias  
+
+* 
 
 ### Django==1.11.1  
 
@@ -87,11 +89,38 @@
 
 * In setting.py,there is a ALLOW_HOST=[],when project run online , must define which host is allow, or can not scan  
 
-* uwsgi-- in face , a http server of python,like apache , like phpfpm , can run lonely , but better with nginx,but wsgi is a interface  
+* uwsgi-- in fact , a http server of python,like apache , like phpfpm ,but like node server most ,  can run lonely , but better with nginx,but wsgi is a interface  
 
-* run uswgi-server command :  uwsgi --http :8003 --chdir  /usr/she/nginx/python/image_deal/ --wsgi-file /usr/share/nginx/python/image_deal/image_deal/wsgi.py  [alse I can run with a config document uwsgi --ini config.ini (but I fail)]  
+* run uswgi-server command :
+	```
+	  uwsgi --http :8003 --chdir  /usr/she/nginx/python/image_deal/ --wsgi-file /usr/share/nginx/python/image_deal/image_deal/wsgi.py  
+	```
+	  Also I can run with a config document :
+	```
+	(1)chdir=...
+	(2)http=:8006
+	(3)wsgi-file
+	then run : uwsgi config.ini || uwsgi --ini config.ini 
+	```
+	how to run backstage : 
+	```
+	uwsgi config.ini -d logfile.log
+	```  
 
-* user nginx is just for uwsgi_pass to uwsgi server  
+* about port and process check:
+	```
+	ps -ef | grep process_name 
+
+	netstat aunltp | grep port_num
+	```  
+
+* use nginx is just for uwsgi_pass to uwsgi server  
+
+### Django在ubuntu上，nginx联合uwsgi的配置  
+
+* [360doc的博文](http://www.360doc.com/content/17/0602/13/29497481_659267502.shtml)   
+
+
 
 
 
