@@ -5,9 +5,9 @@
 
 ### project explain  
 
-1. **plan** is for first learn  
+1. **plan** is for first learn,later I've delete it  
 
-2. **image_deal** is for dealing my image problems
+2. **image_deal** is for dealing my image problems ,can regard as a refer when I work
 
 ### python==3.6.1  
 
