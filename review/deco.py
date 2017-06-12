@@ -17,7 +17,7 @@ def one():
 one()
 
 
-print('!#'*30)
+print('!#?'*30)
 
 def show_hate(fn):
 	def wrapper():
@@ -83,3 +83,26 @@ def fuck(age):
 	print('I an in fuck')
 
 fuck(32)
+
+print("wowowowowowo************"*10)
+
+
+def shower(position):
+	def middle(func):
+		def wrapper(argv):
+			if position=='header':
+				print('this is header')
+				func(argv)
+			elif position=='footer':
+				func(argv)
+				print('this is footer')
+			else:
+				print('position argv is not right!')
+		return wrapper
+	return middle
+
+@shower('footerl')
+def func(name):
+	print('this is a function name is {}'.format(name))
+
+func('hello world')
