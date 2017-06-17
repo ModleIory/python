@@ -43,3 +43,10 @@ print(r)
 stringi = '12146546'
 end = re.search(r,stringi)
 print(end)
+
+#匹配所有,并且返回一个数组
+rule = r'http://www.(.+?).com'
+string = "http://www.baidu.com;http://www.qq.com;http://www.runoob.com"
+pattern = re.compile(rule)
+result_list = re.findall(pattern,string)
+print(result_list)
