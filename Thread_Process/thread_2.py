@@ -23,11 +23,11 @@ t_obj = []
 for x in range(3):
 	th = thread_create(x)
 	th.start()
-	th.join()#join在这里就是线程结束了才结束
+	th.join()#join在这里就是此个线程完了,在执行下一个线程
 	t_obj.append(th)
 
 # for tmp in t_obj:
-# 	tmp.join()#使得子线陈完了在执行主线程
+	# tmp.join()#使得所有子线陈同步执行,完了再来主线程
 # t_obj[1].join()
 
 print('delta = {}'.format(time.time()-start))
