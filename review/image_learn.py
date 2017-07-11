@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*- 
 
 
-from PIL import Image,ImageDraw
+from PIL import Image
 import os
 
 print('this is pillow lib learn')
@@ -39,6 +39,7 @@ sample.save('cut_img.png')
 '''
 #创建一个新画布
 new_img = Image.new('RGBA',(300,300),'yellow')
+#这里paste,只要box的尺寸一样就好,位置可以变的
 new_img.paste(region,box)
 # new_img.show()
 new_img.save('fuck_you.png')
