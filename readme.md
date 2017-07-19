@@ -9,6 +9,15 @@
 
 2. **image_deal** is for dealing my image problems ,can regard as a refer when I work
 
+3. **reptile** is for reptile exercise with python, I find it was payed more attentions  
+
+4. **tool** is some tools maybe I can use in the future  
+
+5. **review** is some basic knowledge which I filled  
+
+6. **Thread_Process** is async basic to solve some problems  
+
+
 ### python==3.6.1  
 
 * after installed python , set the path of /python.exe and /Script/pip.exe into enviroment  all cmd execute statement is save in /Script

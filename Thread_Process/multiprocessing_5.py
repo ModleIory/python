@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #-*- coding:utf-8 -*- 
 
+#这里的multiprocessing的Queue和Queue有区别的,前者是跨进程通信的,
 from multiprocessing import Process,Queue
 import os ,time ,random
 

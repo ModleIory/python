@@ -6,7 +6,7 @@ from multiprocessing import Process#这个才是跨平台的
 
 print('python的多进程')
 
-print('主进程的pid是:{}'.format(os.getpid()))
+print('本进程的pid是:{}'.format(os.getpid()))
 
 '''只能在unix上
 p_id = os.fork()
