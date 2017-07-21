@@ -3,6 +3,7 @@
 
 try:
 	print(r)
+	fuxk
 	# Exception as e can catch all the errro
 except Exception as e:
 	print(e)

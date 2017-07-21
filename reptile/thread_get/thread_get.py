@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#-*- coding:utf-8 -*-
 
 #http://www.gushiwen.org的所有内容
 
@@ -11,7 +12,24 @@ import time
 
 print('Use thread to get message from www.gushiwen.org and write into document')
 
+#保存书籍
+def save_book(type,book,title,content):
+	directory = type+'/'+book
+	path = directory+'/'+title+'.txt'
+	try:
+		if not os.path.exists(directory):
+			os.makedirs(directory)
+		#在window打开新文件的格式都是gbk的编码,所以要转化下
+		with open(path,'w',encoding='utf-8') as file:
+			all = title+'\n\n'+content
+			result = file.write(all)
+	except Exception as e:
+		print('出现一个错误...')
+		error_log = type+'/'+'error_log.log'
+		with open(error_log,'a+',encoding='utf-8') as err:
+			err.write(str(e)+'\n\n')
 
+#爬取古问
 class get_guwen(threading.Thread):
 
 	url = None
@@ -21,15 +39,17 @@ class get_guwen(threading.Thread):
 	second_page_data = []
 	re_third_title = None
 	re_third_content = None
+	type = 'ancient_book'
 
 	def __init__(self,url,re_main='',re_second='',re_third_title='',re_third_content=''):
 		print('\n'+'*'*50+'\n')
 		print("Begin to get guwen")
 		super().__init__()
 		self.url = url
+		#这里编译了 compile 那么我在用re.M|re.S修饰就会报错了真是奇怪
 		self.re_main = re.compile(re_main)
 		self.re_second = re.compile(re_second)
-		self.re_third_title = re_third_title
+		self.re_third_title = re.compile(re_third_title)
 		self.re_third_content = re_third_content
 
 	def get_html(self,url):
@@ -67,12 +87,22 @@ class get_guwen(threading.Thread):
 				#x is book_name , y is list os directory
 				for k in y:
 					html = self.get_html('http://so.gushiwen.org{}'.format(k[0]))
-					arr_title = re.findall(self.re_third_title,html,re.M|re.S)
-					print(html)
-					# print(arr_title)
-					if count==1:
-						sys.exit()
-			########### fuck metion there  because of  reg_exp can't get the title JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+					#详情title deal
+					arr_title = re.findall(self.re_third_title,html)
+					title = arr_title[0]
+					print(title)
+					#详情内容deal
+					#表达式谢了\n这里就不用re.S|re.M
+					content_with_html_arr = re.findall(self.re_third_content,html,re.M|re.S)
+					content_with_html = content_with_html_arr[0]
+					re_deal_html_content = r'<p>|</p>|\n'
+					pure_content_arr = re.split(re_deal_html_content,content_with_html)
+					content = '\n'.join(pure_content_arr)
+					print(content)
+					type = self.type
+					book = x
+					save_book(self.type,book,title,content)
+
 
 
 	def run(self):
@@ -82,8 +112,10 @@ class get_guwen(threading.Thread):
 begin = time.time()
 re_main = r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>'
 re_second = r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>'
-re_third_title = r'<h1.+?>\n(.+?)\n<a'
-test = get_guwen('http://so.gushiwen.org/guwen/',re_main,re_second)
+#有的地方title形式还不一样!
+re_third_title = r'<h1.+?>\n(.+?)\n'
+re_third_content = r'<div\sclass="contson">(.+?)</div>'
+test = get_guwen('http://so.gushiwen.org/guwen/',re_main,re_second,re_third_title,re_third_content)
 test.start()
 test.join()
 end = time.time()
