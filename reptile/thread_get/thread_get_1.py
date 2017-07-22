@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #-*- coding:utf-8 -*-
 
-#http://www.gushiwen.org的所有内容
+#http://www.gushiwen.org的古文部分的内容
 
 import re
 #这里必须这样写才行
@@ -12,22 +12,6 @@ import time
 
 print('Use thread to get message from www.gushiwen.org and write into document')
 
-#保存书籍
-def save_book(type,book,title,content):
-	directory = type+'/'+book
-	path = directory+'/'+title+'.txt'
-	try:
-		if not os.path.exists(directory):
-			os.makedirs(directory)
-		#在window打开新文件的格式都是gbk的编码,所以要转化下
-		with open(path,'w',encoding='utf-8') as file:
-			all = title+'\n\n'+content
-			result = file.write(all)
-	except Exception as e:
-		print('出现一个错误...')
-		error_log = type+'/'+'error_log.log'
-		with open(error_log,'a+',encoding='utf-8') as err:
-			err.write(str(e)+'\n\n')
 
 #爬取古问
 class get_guwen(threading.Thread):
@@ -77,6 +61,23 @@ class get_guwen(threading.Thread):
 		# print(all)
 		return all
 
+	def save_book(self,type,book,title,content):
+		directory = type+'/'+book
+		path = directory+'/'+title+'.txt'
+		try:
+			if not os.path.exists(directory):
+				os.makedirs(directory)
+			#在window打开新文件的格式都是gbk的编码,所以要转化下
+			with open(path,'w',encoding='utf-8') as file:
+				all = title+'\n\n'+content
+				result = file.write(all)
+		except Exception as e:
+			print('出现一个错误...')
+			error_log = type+'/'+'error_log.log'
+			with open(error_log,'a+',encoding='utf-8') as err:
+				err.write(str(e)+'\n\n')
+
+
 	#得到三级的,就是题目和正文
 	def get_third_page_data(self):
 		grade_father = self.get_second_page_data()#[ {book_name:[(link,directory),(link,directory)]} ]
@@ -101,7 +102,7 @@ class get_guwen(threading.Thread):
 					print(content)
 					type = self.type
 					book = x
-					save_book(self.type,book,title,content)
+					self.save_book(self.type,book,title,content)
 
 
 
@@ -115,9 +116,12 @@ re_second = r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>'
 #有的地方title形式还不一样!
 re_third_title = r'<h1.+?>\n(.+?)\n'
 re_third_content = r'<div\sclass="contson">(.+?)</div>'
+
+
 test = get_guwen('http://so.gushiwen.org/guwen/',re_main,re_second,re_third_title,re_third_content)
 test.start()
 test.join()
 end = time.time()
 print('time is : {}'.format(end-begin))
+
 
