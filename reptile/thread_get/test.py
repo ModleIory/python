@@ -37,8 +37,13 @@ import urllib.request
 
 # save_book(type,book,title,content)
 
-try:
-	fuck
-except Exception as e:
-	print(e)
-	print(str(e))
+# try:
+# 	fuck
+# except Exception as e:
+# 	print(e)
+# 	print(str(e))
+
+va = {'nihao':'wangyuanzhong'}
+print(list(va.keys()))
+print(va.values())
+print(list(va))
