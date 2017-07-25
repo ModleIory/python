@@ -9,11 +9,13 @@ import sys , time ,os
 import threading
 import urllib.request
 
-print('Begin to get by author')
+print('Begin to get by author from http://so.gushiwen.org/authors ')
 
 class get_author(threading.Thread):
 	def __init__(self):
 		super().__init__()
+		print('\n'+'*'*50+'\n')
+		print("Begin to get poem")
 		self._type = 'ancient_poem'
 
 	def get_html(self,url):
@@ -105,13 +107,15 @@ class get_author(threading.Thread):
 				self.save_poem(author=x,title=j[0],content=j[1])
 
 
-
+'''
+可以单独执行,也可以作为库执行
 start = time.time()
 test = get_author()
 test.start()
 test.join()
 end = time.time()
 print('总共花费时间是{}'.format(end-start))
+'''
 
 
 

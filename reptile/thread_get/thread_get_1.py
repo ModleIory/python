@@ -16,25 +16,25 @@ print('Use thread to get message from www.gushiwen.org and write into document')
 #爬取古问
 class get_guwen(threading.Thread):
 
-	url = None
-	re_main = None
+	# url = None
+	# re_main = None
 	main_page_data = None
-	re_second = None
+	# re_second = None
 	second_page_data = []
-	re_third_title = None
-	re_third_content = None
+	# re_third_title = None
+	# re_third_content = None
 	type = 'ancient_book'
 
-	def __init__(self,url,re_main='',re_second='',re_third_title='',re_third_content=''):
+	def __init__(self,url='',re_main='',re_second='',re_third_title='',re_third_content=''):
 		print('\n'+'*'*50+'\n')
 		print("Begin to get guwen")
 		super().__init__()
-		self.url = url
+		self.url = 'http://so.gushiwen.org/guwen/'
 		#这里编译了 compile 那么我在用re.M|re.S修饰就会报错了真是奇怪
-		self.re_main = re.compile(re_main)
-		self.re_second = re.compile(re_second)
-		self.re_third_title = re.compile(re_third_title)
-		self.re_third_content = re_third_content
+		self.re_main = re.compile(r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>')
+		self.re_second = re.compile(r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>')
+		self.re_third_title = re.compile(r'<h1.+?>\n(.+?)\n')
+		self.re_third_content = r'<div\sclass="contson">(.+?)</div>'
 
 	def get_html(self,url):
 		document = urllib.request.urlopen(url)
@@ -110,18 +110,20 @@ class get_guwen(threading.Thread):
 		self.get_third_page_data()	
 		
 #得到各本书籍url,名字的reg_exp
-begin = time.time()
-re_main = r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>'
-re_second = r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>'
+# re_main = r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>'
+# re_second = r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>'
 #有的地方title形式还不一样!
-re_third_title = r'<h1.+?>\n(.+?)\n'
-re_third_content = r'<div\sclass="contson">(.+?)</div>'
+# re_third_title = r'<h1.+?>\n(.+?)\n'
+# re_third_content = r'<div\sclass="contson">(.+?)</div>'
 
-
-test = get_guwen('http://so.gushiwen.org/guwen/',re_main,re_second,re_third_title,re_third_content)
+'''
+可单独执行,也可以作为库
+begin = time.time()
+test = get_guwen()
 test.start()
 test.join()
 end = time.time()
 print('time is : {}'.format(end-begin))
+'''
 
 
