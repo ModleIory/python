@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #-*- coding:utf-8 -*-
 
-#http://www.gushiwen.org的所有内容
+#http://www.gushiwen.org的古文部分的内容
 
 import re
 #这里必须这样写才行
@@ -16,25 +16,25 @@ print('Use thread to get message from www.gushiwen.org and write into document')
 #爬取古问
 class get_guwen(threading.Thread):
 
-	url = None
-	re_main = None
+	# url = None
+	# re_main = None
 	main_page_data = None
-	re_second = None
+	# re_second = None
 	second_page_data = []
-	re_third_title = None
-	re_third_content = None
+	# re_third_title = None
+	# re_third_content = None
 	type = 'ancient_book'
 
-	def __init__(self,url,re_main='',re_second='',re_third_title='',re_third_content=''):
+	def __init__(self,url='',re_main='',re_second='',re_third_title='',re_third_content=''):
 		print('\n'+'*'*50+'\n')
 		print("Begin to get guwen")
 		super().__init__()
-		self.url = url
+		self.url = 'http://so.gushiwen.org/guwen/'
 		#这里编译了 compile 那么我在用re.M|re.S修饰就会报错了真是奇怪
-		self.re_main = re.compile(re_main)
-		self.re_second = re.compile(re_second)
-		self.re_third_title = re.compile(re_third_title)
-		self.re_third_content = re_third_content
+		self.re_main = re.compile(r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>')
+		self.re_second = re.compile(r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>')
+		self.re_third_title = re.compile(r'<h1.+?>\n(.+?)\n')
+		self.re_third_content = r'<div\sclass="contson">(.+?)</div>'
 
 	def get_html(self,url):
 		document = urllib.request.urlopen(url)
@@ -61,6 +61,23 @@ class get_guwen(threading.Thread):
 		# print(all)
 		return all
 
+	def save_book(self,type,book,title,content):
+		directory = type+'/'+book
+		path = directory+'/'+title+'.txt'
+		try:
+			if not os.path.exists(directory):
+				os.makedirs(directory)
+			#在window打开新文件的格式都是gbk的编码,所以要转化下
+			with open(path,'w',encoding='utf-8') as file:
+				all = title+'\n\n'+content
+				result = file.write(all)
+		except Exception as e:
+			print('出现一个错误...')
+			error_log = type+'/'+'error_log.log'
+			with open(error_log,'a+',encoding='utf-8') as err:
+				err.write(str(e)+'\n\n')
+
+
 	#得到三级的,就是题目和正文
 	def get_third_page_data(self):
 		grade_father = self.get_second_page_data()#[ {book_name:[(link,directory),(link,directory)]} ]
@@ -85,7 +102,7 @@ class get_guwen(threading.Thread):
 					print(content)
 					type = self.type
 					book = x
-					save_book(self.type,book,title,content)
+					self.save_book(self.type,book,title,content)
 
 	#保存书籍
 	def save_book(type,book,title,content):
@@ -109,15 +126,20 @@ class get_guwen(threading.Thread):
 		self.get_third_page_data()	
 		
 #得到各本书籍url,名字的reg_exp
-begin = time.time()
-re_main = r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>'
-re_second = r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>'
+# re_main = r'<a\shref="(/guwen/book_\d+?\.aspx)">(.+?)</a>'
+# re_second = r'<a\shref="(/guwen/bookv_\d+?\.aspx)">(.+?)</a>'
 #有的地方title形式还不一样!
-re_third_title = r'<h1.+?>\n(.+?)\n'
-re_third_content = r'<div\sclass="contson">(.+?)</div>'
-test = get_guwen('http://so.gushiwen.org/guwen/',re_main,re_second,re_third_title,re_third_content)
+# re_third_title = r'<h1.+?>\n(.+?)\n'
+# re_third_content = r'<div\sclass="contson">(.+?)</div>'
+
+'''
+可单独执行,也可以作为库
+begin = time.time()
+test = get_guwen()
 test.start()
 test.join()
 end = time.time()
 print('time is : {}'.format(end-begin))
+'''
+
 
