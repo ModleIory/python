@@ -12,22 +12,6 @@ import time
 
 print('Use thread to get message from www.gushiwen.org and write into document')
 
-#保存书籍
-def save_book(type,book,title,content):
-	directory = type+'/'+book
-	path = directory+'/'+title+'.txt'
-	try:
-		if not os.path.exists(directory):
-			os.makedirs(directory)
-		#在window打开新文件的格式都是gbk的编码,所以要转化下
-		with open(path,'w',encoding='utf-8') as file:
-			all = title+'\n\n'+content
-			result = file.write(all)
-	except Exception as e:
-		print('出现一个错误...')
-		error_log = type+'/'+'error_log.log'
-		with open(error_log,'a+',encoding='utf-8') as err:
-			err.write(str(e)+'\n\n')
 
 #爬取古问
 class get_guwen(threading.Thread):
@@ -103,9 +87,25 @@ class get_guwen(threading.Thread):
 					book = x
 					save_book(self.type,book,title,content)
 
+	#保存书籍
+	def save_book(type,book,title,content):
+		directory = type+'/'+book
+		path = directory+'/'+title+'.txt'
+		try:
+			if not os.path.exists(directory):
+				os.makedirs(directory)
+			#在window打开新文件的格式都是gbk的编码,所以要转化下
+			with open(path,'w',encoding='utf-8') as file:
+				all = title+'\n\n'+content
+				result = file.write(all)
+		except Exception as e:
+			print('出现一个错误...')
+			error_log = type+'/'+'error_log.log'
+			with open(error_log,'a+',encoding='utf-8') as err:
+				err.write(str(e)+'\n\n')
 
 
-	def run(self):
+	def run(self): 
 		self.get_third_page_data()	
 		
 #得到各本书籍url,名字的reg_exp
