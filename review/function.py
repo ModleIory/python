@@ -31,7 +31,13 @@ one_()
 
 eval('two()')
 
-#不定长参数
+
+
+print('不定长参数--tuple')
 def fun(*more):
 	print(more)
 fun('you','me','wow')
+print('不定长参数--dict')
+def func(**ques):
+	print(ques)
+func(a=1,b=2,c=2)
