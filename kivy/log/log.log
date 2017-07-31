@@ -1,0 +1,19 @@
+[INFO   ] Logger: Record log in D:\modle\work\python\kivy\log\log.log
+[INFO   ] begin to run......
+[INFO   ] OSC: using <thread> for socket
+[INFO   ] Window: Provider: sdl2
+[INFO   ] GL: Using the "OpenGL" graphics system
+[INFO   ] GL: GLEW initialization succeeded
+[INFO   ] GL: Backend used <glew>
+[INFO   ] GL: OpenGL version <b'4.4.12874 Compatibility Profile Context 14.100.0.0'>
+[INFO   ] GL: OpenGL vendor <b'ATI Technologies Inc.'>
+[INFO   ] GL: OpenGL renderer <b'AMD Radeon HD 6700 Series'>
+[INFO   ] GL: OpenGL parsed version: 4, 4
+[INFO   ] GL: Shading version <b'4.30'>
+[INFO   ] GL: Texture max size <16384>
+[INFO   ] GL: Texture max units <18>
+[INFO   ] Window: auto add sdl2 input provider
+[INFO   ] Window: virtual keyboard not allowed, single mode, not docked
+[INFO   ] Base: Start application main loop
+[INFO   ] GL: NPOT texture support is available
+[INFO   ] Base: Leaving application in progress...
