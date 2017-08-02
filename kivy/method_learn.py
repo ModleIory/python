@@ -9,10 +9,13 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.slider import Slider
 from kivy.uix.textinput import TextInput
+from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.logger import Logger
 from kivy.network.urlrequest import UrlRequest
 import urllib.parse
+from kivy.animation import Animation
+
 
 #config deal
 '''
@@ -25,11 +28,19 @@ Logger.info('begin to run......')
 class Interface(GridLayout):
 	def __init__(self,**args):
 		super(Interface,self).__init__(**args)
-		self.cols = 3
-		self.add_widget(Label(text="this is label"))
+		self.rows = 4
+		self.orientation = "vertical"
+		l = Label(text="this is label")
+		self.add_widget(l)
 		self.add_widget(Slider(min=0,max=100,value=25))
 		self.add_widget(TextInput(text='please input and be silence'))
-
+		self.add_widget(Button(text='This is btn',width=100,height=200))
+		#创建动画
+		anim = Animation(x=100,y=200)+Animation(x=50,y=-300)
+		anim.repeat = True
+		animate = lambda *args:anim.start(l)
+		Clock.schedule_once(animate,10)
+		
 #会自动添加些参数
 def print_one(*args):
 	print('This is print one')
