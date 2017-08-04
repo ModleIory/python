@@ -7,7 +7,7 @@ print("sqlite是C写的 小巧轻便 可以集成到程序中 储存方式是文
 
 #描述一下过程
 
-con = sqlite3.connect('test.db')#有则存储,没有则新建
+con = sqlite3.connect('sqlite/test.db')#有则存储,没有则新建
 cursor = con.cursor()#感觉和pymysql微微相像
 
 
@@ -32,7 +32,7 @@ except Exception as e:
 
 
 sql_insert_data = '''
-	INSERT INTO user(id,username,password,create_date) VALUES(23,'modle_sherlock_','_shelrock000',"2017-08-03 17:10:55")
+	INSERT INTO user(id,username,password,create_date) VALUES(3,'modle_sherlock_','_shelrock000',"2017-08-03 17:10:55")
 '''
 cursor.execute(sql_insert_data)
 
