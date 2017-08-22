@@ -21,3 +21,8 @@ print(tmps['a'])
 print(tmps['b'])
 '''
 
+#文本文件的处理
+arr = np.loadtxt('helper/normal_txt.txt',delimiter='|')
+#一个二维数组，回车处看作是另外一个数组了，|是数组中每个元素的分割
+print(arr)
+np.savetxt('helper/save_txt',arr,delimiter="@")
