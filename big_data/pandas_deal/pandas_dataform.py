@@ -13,11 +13,16 @@ data = {
 	'member':member,
 	'number':number
 }
-#这里可以制定顺序呢
-frame = DataFrame(data,columns=['number','member','state'])
+#这里可以制定顺序呢,将field定制成属性,将index看做table的id
+frame = DataFrame(data,columns=['number','member','state','more'],index=['one','two','three'])
 print(frame)
 
-print('可以将列搞成一个series')
+print('可以将列搞成一个series,就是相同的属性')
 print(frame['number'])
+print('得到一个个体个全面的属性')
+#设定一个field的属性
+frame['more'] = 'zhuchangying'
+print(frame)
+# print(frame.xi.['one'])
 
 
