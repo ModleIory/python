@@ -14,15 +14,28 @@ data = {
 	'number':number
 }
 #这里可以制定顺序呢,将field定制成属性,将index看做table的id
-frame = DataFrame(data,columns=['number','member','state','more'],index=['one','two','three'])
+frame = DataFrame(data,columns=['number','member','state','more','more_2'],index=['one','two','three'])
 print(frame)
 
 print('可以将列搞成一个series,就是相同的属性')
 print(frame['number'])
-print('得到一个个体个全面的属性')
-#设定一个field的属性
+print('给一个filed的所有赋值')
 frame['more'] = 'zhuchangying'
+# frame['number'] = 100
 print(frame)
-# print(frame.xi.['one'])
+print('给列赋值可以动用series,或者nparray') 
+frame['more_2'] = np.arange(3)
+print(frame)
+attach = Series(['loving you','zhongyaji','xixhahaha'],index=['one','two','three'])
+frame['more_2'] = attach
+print(frame)
+print('可为不存在之列赋值，可用del删除列')
+frame['more_3'] = np.arange(3)
+print(frame)
+del frame['more_3']
+print(frame)
+
+
+
 
 
