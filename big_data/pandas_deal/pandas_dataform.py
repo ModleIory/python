@@ -34,6 +34,27 @@ frame['more_3'] = np.arange(3)
 print(frame)
 del frame['more_3']
 print(frame)
+print('嵌套型字典的成dataform')
+obj = {
+	"one_field":{
+		'1':'you',
+		'2':'me'
+	},
+	"two_field":{
+		'1':'zhong',
+		'2':'wuruijie'
+	}
+}
+f = DataFrame(obj)
+print(f)
+print('filed 和 index 进行转置')
+print(f.T)
+f_ = DataFrame(obj,index=['1','2','3'])
+print(f_)
+print('得到值')
+print(f.values)
+
+
 
 
 
