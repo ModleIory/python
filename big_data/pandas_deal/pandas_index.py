@@ -22,3 +22,12 @@ frame = DataFrame(np.arange(9).reshape(3,3),index=np.array(['one','two','three']
 print(frame)
 new_f = frame.reindex(index=['one','two','three','four'],columns=['num','name','age','sex'],fill_value='0_0')
 print(new_f)
+
+#丢弃索引
+print('丢其索引,就是id，不可丢弃字段对于column来说')
+wow1 = Series(np.arange(5),index=['a','b','c','d','e'])
+print(wow1)
+print(wow1.drop(['a','d']))
+wow2 = DataFrame(np.arange(9).reshape(3,3),index=['a','b','c'],columns=['num','name','tel'])
+print(wow2)
+print(wow2.drop(['a','b']))
