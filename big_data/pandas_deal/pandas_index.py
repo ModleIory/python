@@ -31,3 +31,25 @@ print(wow1.drop(['a','d']))
 wow2 = DataFrame(np.arange(9).reshape(3,3),index=['a','b','c'],columns=['num','name','tel'])
 print(wow2)
 print(wow2.drop(['a','b']))
+
+print('选取索引和过滤series and dataframe')
+###Seires
+mom = Series(np.arange(4),index=['a','b','c','d'])
+print(mom)
+#可以用array一样的索引 ， 也可以用key
+print(mom[1],mom['b'])
+#所以，也就可以用切片饿了
+print(mom[1:3],mom['a':'c'])
+print(mom[mom<3])
+###Dataframe
+dad = DataFrame(np.arange(16).reshape(4,4),index=['one','two','three','four'],columns=['1_field','2_field','3_field','4_field'])
+print(dad)
+print('选择一个field的所有值')
+print(dad['1_field'],dad[['1_field','2_field']])
+print('现在是选择的是索引了,相当于数据库的条件查询了')
+print(dad[:2])
+print(dad[dad['4_field']>10])
+print(dad<5)
+print('ix索引字段，前面的数组是index，后面的而是field')
+print(dad.ix[['one','two'],['1_field','2_field']])
+print(dad.ix['four',['3_field','4_field']])
