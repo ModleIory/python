@@ -53,3 +53,9 @@ print(dad<5)
 print('ix索引字段，前面的数组是index，后面的而是field')
 print(dad.ix[['one','two'],['1_field','2_field']])
 print(dad.ix['four',['3_field','4_field']])
+#这里是1和3索引出的
+print(dad.ix[['three'],[1,3]])
+print(dad.ix[2])
+#这里是1到三索引处的
+print(dad.ix[dad['1_field']>=0,1:3])
+print(dad.ix[0:2])
