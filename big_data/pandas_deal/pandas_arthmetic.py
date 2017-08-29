@@ -32,11 +32,34 @@ print('减去一行，然后每行都减，就叫广播，dataFrame和series也�
 
 ss = Series({'a':1,'b':2,'c':3,'d':4})
 dd = DataFrame(np.arange(9).reshape(3,3),index=['one','two','three'],columns=['a','b','c'])
-#相减项目匹配的dataFrame的column和series的index
+#相减项目匹配的dataFrame的column和series的index，这个是很好理解的 
 print(ss)
 print(dd)
 d_s_result = dd-ss
 print(d_s_result)
+
+#reindex and fill value
+df_one = DataFrame(np.arange(9).reshape(3,3),index=[1,2,3],columns=['a','b','c'])
+df_two = DataFrame(np.arange(12).reshape(4,3),index=[1,3,5,7],columns=['a','c','e'])
+fuck = df_one.reindex(index = df_two.index,columns=df_two.columns,fill_value='0_0')
+print(fuck)
+
+df_r = DataFrame(np.arange(4).reshape(2,2),index=['one','two'],columns=['name','age'])
+print(df_r)
+
+print("Dataframe 减去 Series 是减去匹配的 不一定横竖  看索引了")
+
+tmp = DataFrame(np.arange(16).reshape(4,4),index=['a','b','c','d'],columns=['Yours','Mine','Tom','Jerry'])
+print(tmp)
+v5 = tmp['Yours']
+print(v5)
+#竖方向的相加减用这个，就是index
+print(tmp.sub(v5,axis=0))
+w5 = tmp.ix[0]
+print(w5)
+#这个是横方向上的相加减
+print(tmp-w5)
+
 
 
 
