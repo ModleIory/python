@@ -18,7 +18,7 @@
 6. **Thread_Process** is async basic to solve some problems  
 
 
-### python==3.6.1  
+### python==3.6.1    
 
 * after installed python , set the path of /python.exe and /Script/pip.exe into enviroment  all cmd execute statement is save in /Script
   
