@@ -17,7 +17,7 @@ cursor = con.cursor()#感觉和pymysql微微相像
 # else:
 sql_create_table = '''
 	CREATE TABLE user (
-		id int primary key,
+		id int primary key auto_increment,
 		username varchar(20),
 		password varchar(20),
 		create_date date
