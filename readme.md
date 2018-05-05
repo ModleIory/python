@@ -17,6 +17,11 @@
 
 6. **Thread_Process** is async basic to solve some problems  
 
+7. **Senior** is for the knowledge that I do not know
+
+8. **arithmeticc** is for math 
+
+9. **big_data** is for big Data research
 
 ### python==3.6.1    
 
