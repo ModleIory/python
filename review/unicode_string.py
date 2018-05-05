@@ -54,3 +54,25 @@ file.write(ha_bytes)
 file.flush()
 file.close()
 
+
+#此种,对于英文,随意都是可以的,但是对于中文,就不一样了,中文无法转化成ascii的byte
+#转化成哪种类型,就是哪种类型的流,解码需要相应的编码来解决,否则不对
+print("*"*40)
+modle = "我是 sherlock"
+print(modle)
+gbk = modle.encode("gbk")
+print(gbk)
+utf8 = modle.encode("utf-8")
+print(utf8)
+# ascii = modle.encode("ascii")
+# print(ascii)
+
+print("*"*40)
+gbk_str = gbk.decode("gbk")
+print(gbk_str)
+utf8_str = utf8.decode("utf8")
+print(utf8_str)
+
+
+
+
