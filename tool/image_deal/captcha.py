@@ -74,7 +74,7 @@ create_point(paper,point_rate,point_color)
 char_arr = get_chars(chars,chars_num)
 create_letter(paper,char_arr,font_type,font_size,font_color)
 paper = paper.filter(ImageFilter.EDGE_ENHANCE_MORE)
-paper.save(name)
+paper.convert("RGB").save(name)
 
 
 #get from here

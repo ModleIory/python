@@ -1,11 +1,11 @@
 import threading
 import time
 
+num = 0
 def run(n):
     global num
     num += 1
 
-num = 0
 t_obj = [] 
 
 for i in range(20000):
