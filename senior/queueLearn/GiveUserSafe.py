@@ -56,6 +56,6 @@ class NumberChange(threading.Thread):
         print(mixNum)
 one = NumberChange('add',L)
 two = NumberChange('sub',L)
-# one.start()
-# two.start()
+one.start()
+two.start()
             
