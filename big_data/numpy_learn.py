@@ -1,5 +1,10 @@
 import numpy as np
 
+# 1.实现了很多方法
+# 2.性能更好,c实现
+# 3.其中每个元素类型必然相同
+# 4.更加像list的增强版本
+
 ############ 
 ###构造和类型(dtype)
 ############
@@ -90,4 +95,7 @@ print(count_2one)
 print(count_2two)
 print("*"*30)
 print(count_2one+count_2two)
+
+# 切片
+
 
